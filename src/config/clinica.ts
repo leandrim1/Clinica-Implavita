@@ -292,6 +292,14 @@ export const AMBIENTES: readonly AmbienteClinica[] = [
   },
 ];
 
+/** Fachada da clínica, exibida junto ao endereço para ajudar a reconhecer o local. */
+export const FACHADA = {
+  arquivo: '/midia/clinica/fachada.jpg' as string | null,
+  largura: 1200,
+  altura: 1200,
+  alt: 'Fachada da Clínica Implavita, com o letreiro iluminado sobre painel de madeira',
+} as const;
+
 /* -------------------------------------------------------------------------
  * GALERIA DE AMBIENTES
  *
@@ -324,6 +332,13 @@ export const FOTOS_CLINICA: readonly FotoClinica[] = [
     descricao: 'Circulação interna com a marca da Implavita aplicada na parede.',
   },
   {
+    id: 'consultorio-arcada',
+    arquivo: '/midia/clinica/consultorio-arcada.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Consultório da Implavita visto a partir da circulação interna.',
+  },
+  {
     id: 'circulacao',
     arquivo: '/midia/clinica/circulacao.jpg',
     largura: 1400,
@@ -343,9 +358,9 @@ export const FOTOS_CLINICA: readonly FotoClinica[] = [
     largura: 1400,
     altura: 1050,
     descricao: 'Sala de atendimento utilizada nas conversas e no planejamento dos tratamentos.',
-    larga: true,
   },
 ];
+
 
 
 /* -------------------------------------------------------------------------

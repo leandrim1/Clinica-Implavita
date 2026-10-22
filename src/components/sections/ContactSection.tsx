@@ -4,7 +4,7 @@ import { Clock, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { FormularioContato } from '@/components/sections/FormularioContato';
 import { Botao } from '@/components/ui/Botao';
 import { Secao, TituloSecao } from '@/components/ui/Secao';
-import { CONTATO, ENDERECO, HORARIOS } from '@/config/clinica';
+import { CONTATO, ENDERECO, FACHADA, HORARIOS } from '@/config/clinica';
 import { linkWhatsApp } from '@/lib/whatsapp';
 
 import './ContactSection.css';
@@ -73,6 +73,23 @@ export function ContactSection() {
 
       <div className="contato">
         <div className="contato__coluna">
+          {FACHADA.arquivo ? (
+            <figure className="fachada">
+              <img
+                src={FACHADA.arquivo}
+                alt={FACHADA.alt}
+                width={FACHADA.largura}
+                height={FACHADA.altura}
+                loading="lazy"
+                decoding="async"
+                className="fachada__foto"
+              />
+              <figcaption className="fachada__legenda">
+                Procure por esta fachada em {ENDERECO.bairro}.
+              </figcaption>
+            </figure>
+          ) : null}
+
           <ul className="contato__dados">
             <li>
               <span className="contato__icone" aria-hidden="true">

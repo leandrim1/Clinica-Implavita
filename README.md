@@ -65,19 +65,20 @@ O site usa o material enviado pela clínica:
 - **Equipe** — fotografia dos dois profissionais. Aparece inteira na primeira
   dobra e recortada em retratos individuais nas seções de cada um
   (`public/midia/equipe/`).
-- **Ambientes** — 9 imagens do espaço, usadas nos cartões de Recepção,
-  Consultórios e Sala de espera e na galeria logo abaixo
-  (`public/midia/clinica/`).
+- **Ambientes** — 11 imagens do espaço: três nos cartões de Recepção,
+  Consultórios e Sala de espera, sete na galeria logo abaixo e a fachada na
+  seção de contato, junto ao endereço (`public/midia/clinica/`).
 - **Casos clínicos** — registros de tratamentos (`public/midia/casos/`).
 
-Duas imagens do segundo lote ficaram de fora porque trazem texto incorreto
-legível: a da fachada (nomes e titulações corrompidos) e a de um consultório
-em que a parede escreve “IPLAVTA Implantes”. Os arquivos originais seguem no
-material enviado, caso a clínica queira versões corrigidas.
-
 > Nota para quem mantiver o projeto: as imagens de ambiente são renders, não
-> fotografias do espaço construído. Vários detalhes de texto dentro delas estão
-> deformados. A clínica optou por publicá-las como imagens do espaço.
+> fotografias do espaço construído, e vários detalhes de texto dentro delas
+> estão deformados. Dois casos são legíveis no tamanho em que aparecem no site:
+> a fachada (`fachada.jpg`), em que a titulação do Dr. Carlos aparece como
+> “Espcecilalize o Implantardotmia”, o nome da Dra. Thaílha como “Thallha” e a
+> área como “Harmonizaina Facial”; e `consultorio-arcada.jpg`, em que a parede
+> escreve “IPLAVTA Implantes”. A clínica optou por publicá-las assim mesmo.
+> Se vierem versões corrigidas, basta substituir os arquivos: os nomes e as
+> dimensões já estão registrados em `clinica.ts`.
 
 ### Ainda pendente
 

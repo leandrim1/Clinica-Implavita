@@ -11,6 +11,30 @@
   min-width: 0;
 }
 
+/* --- Fachada --- */
+
+.fachada {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-xs);
+  background-color: var(--tinta-100);
+}
+
+.fachada__foto {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.fachada__legenda {
+  padding: 0.65rem 0.9rem;
+  font-size: var(--passo--2);
+  color: var(--tinta-500);
+  border-top: 1px solid var(--cor-borda);
+}
+
 /* --- Dados --- */
 
 .contato__dados {
