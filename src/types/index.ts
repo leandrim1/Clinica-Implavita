@@ -47,6 +47,8 @@ export interface Profissional {
   readonly id: string;
   readonly nome: string;
   readonly atuacao: string;
+  /** Registro no Conselho Regional de Odontologia, confirmado pela clínica. */
+  readonly cro: string;
   readonly descricao: string;
   /** Destaques fornecidos pela clínica. Não adicionar dados não confirmados. */
   readonly destaques: readonly string[];
@@ -105,6 +107,19 @@ export interface AmbienteClinica {
   readonly titulo: string;
   readonly descricao: string;
   readonly icone: LucideIcon;
-  /** Foto oficial do ambiente. `null` enquanto não houver material real. */
+  /** Foto oficial do ambiente. `null` exibe o painel ilustrativo. */
   readonly foto: string | null;
+  readonly largura: number;
+  readonly altura: number;
+}
+
+/** Imagem da galeria de ambientes da clínica. */
+export interface FotoClinica {
+  readonly id: string;
+  readonly arquivo: string;
+  readonly largura: number;
+  readonly altura: number;
+  readonly descricao: string;
+  /** Ocupa duas colunas na composição em grade. */
+  readonly larga?: boolean;
 }

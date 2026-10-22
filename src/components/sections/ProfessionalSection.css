@@ -108,6 +108,19 @@
   color: var(--ouro-300);
 }
 
+.profissional__cro {
+  margin-top: 0.3rem;
+  font-size: var(--passo--2);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-400);
+}
+
+.profissional--escuro .profissional__cro {
+  color: rgba(214, 232, 230, 0.5);
+}
+
 .profissional__descricao {
   margin-top: var(--esp-md);
   max-width: 34rem;

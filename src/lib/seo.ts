@@ -1,4 +1,4 @@
-import { CLINICA, CONTATO, ENDERECO, HORARIOS } from '@/config/clinica';
+import { CLINICA, CONTATO, ENDERECO, HORARIOS, PROFISSIONAIS } from '@/config/clinica';
 
 /**
  * Dados estruturados da clínica (schema.org/Dentist).
@@ -47,6 +47,13 @@ export function dadosEstruturadosClinica(): string {
     hasMap: CONTATO.mapsUrl,
     sameAs: [CONTATO.instagramUrl, CONTATO.mapsUrl],
     openingHoursSpecification: horariosSchema,
+    employee: PROFISSIONAIS.map((profissional) => ({
+      '@type': 'Person',
+      name: profissional.nome,
+      jobTitle: 'Cirurgião-dentista',
+      knowsAbout: profissional.atuacao,
+      identifier: profissional.cro,
+    })),
     availableService: [
       { '@type': 'MedicalProcedure', name: 'Implantes dentários' },
       { '@type': 'MedicalProcedure', name: 'Reabilitação oral com implantes' },

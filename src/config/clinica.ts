@@ -15,6 +15,7 @@ import {
 import type {
   AmbienteClinica,
   CasoClinico,
+  FotoClinica,
   DiaDeFuncionamento,
   Endereco,
   EtapaAgendamento,
@@ -126,12 +127,13 @@ export const PROFISSIONAIS: readonly Profissional[] = [
     id: 'carlos-adolfo-silva',
     nome: 'Dr. Carlos Adolfo Silva',
     atuacao: 'Implantes dentários',
+    cro: 'CRO-MG 3917',
     descricao:
       'Referência em implantes dentários na Implavita, o Dr. Carlos Adolfo Silva conduz os ' +
       'atendimentos da clínica voltados à reposição de dentes ausentes, do planejamento inicial ' +
       'ao acompanhamento de cada etapa do tratamento.',
     destaques: ['Mais de 30 mil implantes realizados'],
-    foto: null,
+    foto: '/midia/equipe/dr-carlos-adolfo-silva.jpg',
     iniciais: 'CA',
     contexto: 'implantes',
     rotuloBotao: 'Agendar avaliação',
@@ -140,11 +142,12 @@ export const PROFISSIONAIS: readonly Profissional[] = [
     id: 'thailha-pinheiro',
     nome: 'Dra. Thaílha Pinheiro',
     atuacao: 'Harmonização facial',
+    cro: 'CRO-MG 88553',
     descricao:
       'A Dra. Thaílha Pinheiro é responsável pela área de harmonização facial da Implavita, ' +
       'com atendimentos conduzidos a partir de uma avaliação individual de cada paciente.',
     destaques: [],
-    foto: null,
+    foto: '/midia/equipe/dra-thailha-pinheiro.jpg',
     iniciais: 'TP',
     contexto: 'harmonizacao',
     rotuloBotao: 'Falar sobre harmonização facial',
@@ -265,23 +268,85 @@ export const AMBIENTES: readonly AmbienteClinica[] = [
     titulo: 'Recepção',
     descricao: 'O espaço de acolhida de quem chega para a avaliação.',
     icone: Armchair,
-    foto: null,
+    foto: '/midia/clinica/recepcao.jpg',
+    largura: 1400,
+    altura: 1050,
   },
   {
     id: 'consultorios',
     titulo: 'Consultórios',
     descricao: 'Salas de atendimento onde os tratamentos são realizados.',
     icone: Stethoscope,
-    foto: null,
+    foto: '/midia/clinica/consultorio.jpg',
+    largura: 1400,
+    altura: 1050,
   },
   {
-    id: 'equipamentos',
-    titulo: 'Equipamentos',
-    descricao: 'Estrutura utilizada no apoio ao diagnóstico e aos procedimentos.',
+    id: 'espera',
+    titulo: 'Sala de espera',
+    descricao: 'Ambiente reservado para a espera antes do atendimento.',
     icone: Microscope,
-    foto: null,
+    foto: '/midia/clinica/sala-de-espera.jpg',
+    largura: 1400,
+    altura: 1050,
   },
 ];
+
+/* -------------------------------------------------------------------------
+ * GALERIA DE AMBIENTES
+ *
+ * Imagens do espaço da clínica cedidas pela Implavita. Para adicionar ou
+ * trocar fotos, coloque o arquivo em `public/midia/clinica/` e inclua uma
+ * entrada aqui com as dimensões reais do arquivo.
+ * ---------------------------------------------------------------------- */
+
+export const FOTOS_CLINICA: readonly FotoClinica[] = [
+  {
+    id: 'recepcao-balcao',
+    arquivo: '/midia/clinica/recepcao-balcao.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Balcão da recepção da Clínica Implavita, com a marca aplicada na madeira.',
+    larga: true,
+  },
+  {
+    id: 'espera-conforto',
+    arquivo: '/midia/clinica/espera-conforto.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Área de espera da clínica, com televisão e ponto de água.',
+  },
+  {
+    id: 'corredor-marca',
+    arquivo: '/midia/clinica/corredor-marca.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Circulação interna com a marca da Implavita aplicada na parede.',
+  },
+  {
+    id: 'circulacao',
+    arquivo: '/midia/clinica/circulacao.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Circulação da clínica, com o quadro da marca Implavita.',
+  },
+  {
+    id: 'lavabo',
+    arquivo: '/midia/clinica/lavabo.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Lavabo disponível aos pacientes.',
+  },
+  {
+    id: 'sala-atendimento',
+    arquivo: '/midia/clinica/sala-atendimento.jpg',
+    largura: 1400,
+    altura: 1050,
+    descricao: 'Sala de atendimento utilizada nas conversas e no planejamento dos tratamentos.',
+    larga: true,
+  },
+];
+
 
 /* -------------------------------------------------------------------------
  * CASOS CLÍNICOS
@@ -452,21 +517,15 @@ export const AVISO_CASOS =
 /* -------------------------------------------------------------------------
  * IMAGEM PRINCIPAL (HERO)
  *
- * O material recebido contém apenas registros clínicos de pacientes —
- * nenhuma foto da equipe, da recepção ou dos consultórios. Em vez de
- * recorrer a banco de imagens com sorrisos genéricos, a primeira dobra usa
- * uma composição gráfica construída a partir da própria marca.
- *
- * Assim que a clínica fornecer uma fotografia da equipe ou do ambiente,
- * aponte `arquivo` para ela: a composição dá lugar à foto automaticamente.
+ * Fotografia da equipe cedida pela clínica. Se `arquivo` voltar a ser `null`,
+ * a primeira dobra exibe a composição gráfica construída a partir da marca.
  * ---------------------------------------------------------------------- */
 
 export const HERO_IMAGEM = {
-  /** Ex.: '/midia/equipe-implavita.jpg'. `null` mantém a composição gráfica. */
-  arquivo: null as string | null,
+  arquivo: '/midia/equipe/equipe-implavita.jpg' as string | null,
   largura: 1040,
   altura: 1300,
-  alt: '',
+  alt: 'Dra. Thaílha Pinheiro e Dr. Carlos Adolfo Silva na Clínica Implavita',
 } as const;
 
 export const TEXTOS = {

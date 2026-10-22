@@ -83,6 +83,8 @@ export function ProfessionalSection({
 
           <p className="profissional__atuacao">{profissional.atuacao}</p>
 
+          <p className="profissional__cro">{profissional.cro}</p>
+
           <p className="profissional__descricao">{profissional.descricao}</p>
 
           {profissional.destaques.length > 0 ? (

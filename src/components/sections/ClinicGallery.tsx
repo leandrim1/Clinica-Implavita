@@ -1,4 +1,4 @@
-import { Clock, Info, MapPin } from 'lucide-react';
+import { Clock, MapPin } from 'lucide-react';
 
 import { Secao, TituloSecao } from '@/components/ui/Secao';
 import {
@@ -7,21 +7,20 @@ import {
   CASOS_VISIVEIS,
   CLINICA,
   ENDERECO,
+  FOTOS_CLINICA,
 } from '@/config/clinica';
+import type { AmbienteClinica } from '@/types';
 
 import './ClinicGallery.css';
 
 /**
- * Painel ilustrativo de ambiente.
+ * Ambiente em destaque, com título e descrição.
  *
- * A clínica ainda não forneceu fotos da recepção, dos consultórios ou dos
- * equipamentos. Em vez de simular fotografias das instalações — o que
- * induziria o visitante a erro — cada ambiente aparece como um painel
- * gráfico identificado como ilustrativo, pronto para receber a foto real
- * pelo campo `foto` em `src/config/clinica.ts`.
+ * Quando `foto` está vazio, exibe um painel gráfico identificado como
+ * ilustrativo, para nunca simular uma fotografia que não existe.
  */
-function PainelAmbiente({ ambiente }: { readonly ambiente: (typeof AMBIENTES)[number] }) {
-  const { titulo, descricao, icone: Icone, foto } = ambiente;
+function CartaoAmbiente({ ambiente }: { readonly ambiente: AmbienteClinica }) {
+  const { titulo, descricao, icone: Icone, foto, largura, altura } = ambiente;
 
   return (
     <figure className="ambiente">
@@ -30,8 +29,8 @@ function PainelAmbiente({ ambiente }: { readonly ambiente: (typeof AMBIENTES)[nu
           <img
             src={foto}
             alt={`${titulo} da Clínica Implavita`}
-            width={800}
-            height={600}
+            width={largura}
+            height={altura}
             loading="lazy"
             decoding="async"
             className="ambiente__foto"
@@ -70,17 +69,30 @@ export function ClinicGallery() {
 
       <div className="clinica__ambientes">
         {AMBIENTES.map((ambiente) => (
-          <PainelAmbiente key={ambiente.id} ambiente={ambiente} />
+          <CartaoAmbiente key={ambiente.id} ambiente={ambiente} />
         ))}
       </div>
 
-      <p className="clinica__nota">
-        <Info size={15} aria-hidden="true" />
-        <span>
-          Os painéis acima são ilustrativos e serão substituídos pelas fotografias
-          oficiais da clínica.
-        </span>
-      </p>
+      {FOTOS_CLINICA.length > 0 ? (
+        <ul className="galeria">
+          {FOTOS_CLINICA.map((foto) => (
+            <li
+              key={foto.id}
+              className={`galeria__item ${foto.larga ? 'galeria__item--larga' : ''}`}
+            >
+              <img
+                src={foto.arquivo}
+                alt={foto.descricao}
+                width={foto.largura}
+                height={foto.altura}
+                loading="lazy"
+                decoding="async"
+                className="galeria__foto"
+              />
+            </li>
+          ))}
+        </ul>
+      ) : null}
 
       {CASOS_VISIVEIS.length > 0 ? (
         <div className="casos">

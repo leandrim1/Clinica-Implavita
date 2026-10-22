@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { PaginaTexto } from '@/pages/PaginaTexto';
-import { CLINICA, CONTATO, ENDERECO, REPUTACAO } from '@/config/clinica';
+import { CLINICA, CONTATO, ENDERECO, PROFISSIONAIS, REPUTACAO } from '@/config/clinica';
 import { aplicarMetadados } from '@/lib/seo';
 
 export function InformacoesLegaisPage() {
@@ -24,12 +24,20 @@ export function InformacoesLegaisPage() {
         <li>Endereço: {ENDERECO.linhaUnica}</li>
         <li>Telefone e WhatsApp: {CONTATO.telefoneExibicao}</li>
       </ul>
+      <h2>Equipe e registros profissionais</h2>
+      <ul>
+        {PROFISSIONAIS.map((profissional) => (
+          <li key={profissional.id}>
+            {profissional.nome} — {profissional.atuacao} — {profissional.cro}
+          </li>
+        ))}
+      </ul>
       <p>
         <strong>Pendente de preenchimento pela clínica:</strong> razão social, CNPJ,
-        número de inscrição no Conselho Regional de Odontologia (CRO-MG) da pessoa
-        jurídica e nome do responsável técnico com o respectivo número de CRO. Esses
-        dados são exigidos pelo Código de Ética Odontológica na comunicação da clínica
-        e foram deixados em branco propositalmente, por não terem sido fornecidos.
+        número de inscrição da pessoa jurídica no Conselho Regional de Odontologia
+        (CRO-MG) e indicação de qual profissional responde como responsável técnico.
+        Esses dados são exigidos pelo Código de Ética Odontológica na comunicação da
+        clínica e foram deixados em branco por não terem sido fornecidos.
       </p>
 
       <h2>Natureza do conteúdo</h2>

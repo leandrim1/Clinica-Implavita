@@ -58,23 +58,46 @@ diretamente desse material (`#C39A6A` nas luzes, `#91745C` nas sombras) e
 assentado sobre um **verde-petróleo profundo**, que dá contraste ao metal e
 carrega a leitura clínica sem recorrer ao azul genérico de consultório.
 
-## Pendências de material da clínica
+## Material da clínica
 
-O acervo recebido contém **apenas registros clínicos de pacientes**. Não havia
-logotipo em arquivo, fotos da equipe nem fotos das instalações. Em vez de
-preencher esses espaços com banco de imagens ou sorrisos artificiais, cada lacuna
-virou um espaço desenhado para receber o material oficial:
+O site usa o material enviado pela clínica:
+
+- **Equipe** — fotografia dos dois profissionais. Aparece inteira na primeira
+  dobra e recortada em retratos individuais nas seções de cada um
+  (`public/midia/equipe/`).
+- **Ambientes** — 9 imagens do espaço, usadas nos cartões de Recepção,
+  Consultórios e Sala de espera e na galeria logo abaixo
+  (`public/midia/clinica/`).
+- **Casos clínicos** — registros de tratamentos (`public/midia/casos/`).
+
+Duas imagens do segundo lote ficaram de fora porque trazem texto incorreto
+legível: a da fachada (nomes e titulações corrompidos) e a de um consultório
+em que a parede escreve “IPLAVTA Implantes”. Os arquivos originais seguem no
+material enviado, caso a clínica queira versões corrigidas.
+
+> Nota para quem mantiver o projeto: as imagens de ambiente são renders, não
+> fotografias do espaço construído. Vários detalhes de texto dentro delas estão
+> deformados. A clínica optou por publicá-las como imagens do espaço.
+
+### Ainda pendente
 
 | O que falta | Como está hoje | Como substituir |
 | --- | --- | --- |
-| Logotipo | Letreiro tipográfico com o nome e a assinatura reais | `LOGO.arquivo` em `clinica.ts` |
-| Foto da primeira dobra | Composição gráfica construída a partir da marca | `HERO_IMAGEM.arquivo` |
-| Retratos dos profissionais | Medalhão com as iniciais | campo `foto` em `PROFISSIONAIS` |
-| Recepção, consultórios, equipamentos | Painéis marcados “Imagem ilustrativa” | campo `foto` em `AMBIENTES` |
-| CNPJ, razão social, CRO-MG, responsável técnico | Marcados como pendentes na página de informações legais | `InformacoesLegaisPage.tsx` |
+| Logotipo em arquivo | Letreiro tipográfico com o nome e a assinatura reais | `LOGO.arquivo` em `clinica.ts` |
+| Razão social, CNPJ, CRO da pessoa jurídica, responsável técnico | Marcados como pendentes na página de informações legais | `InformacoesLegaisPage.tsx` |
 
-Basta apontar o campo para o arquivo colocado em `public/midia/` — a troca é
-automática, sem mexer em componente.
+Para trocar qualquer foto, coloque o arquivo em `public/midia/` e aponte o
+campo correspondente em `src/config/clinica.ts` — nenhum componente precisa
+ser alterado.
+
+### Registros profissionais
+
+Os CRO exibidos no site (Dr. Carlos Adolfo Silva — CRO-MG 3917; Dra. Thaílha
+Pinheiro — CRO-MG 88553) foram confirmados pela clínica e aparecem na seção de
+cada profissional, na página de informações legais e nos dados estruturados.
+A titulação “Especialista em Implantodontia”, que aparece na imagem da fachada,
+**não** foi incluída: não houve confirmação e o texto daquela imagem está
+corrompido. Para publicá-la, acrescente o campo em `PROFISSIONAIS`.
 
 ## Imagens de pacientes — leia antes de publicar
 
@@ -128,8 +151,8 @@ risco recai sobre a clínica, não sobre o site.
 Metadados em pt-BR por rota, canônicas, Open Graph, `robots.txt` e `sitemap.xml`.
 
 Os dados estruturados (`schema.org/Dentist`) declaram **apenas informação
-verificável**: identificação, endereço, telefone, canais oficiais, horários e
-serviços. A nota de 5,0 e as 112 avaliações **não** entram como
+verificável**: identificação, endereço, telefone, canais oficiais, horários,
+serviços e a equipe com os respectivos CRO. A nota de 5,0 e as 112 avaliações **não** entram como
 `aggregateRating` — são dados autodeclarados, e marcação de avaliação própria
 contraria as diretrizes do Google. Os números aparecem no conteúdo da página,
 sempre identificados como informados pela clínica.
