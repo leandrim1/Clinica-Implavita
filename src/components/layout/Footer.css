@@ -1,0 +1,143 @@
+.rodape {
+  padding-block: var(--esp-xl) var(--esp-md);
+  background-color: var(--petroleo-950);
+  color: rgba(214, 232, 230, 0.72);
+  font-size: var(--passo--1);
+}
+
+.rodape__topo {
+  display: grid;
+  gap: var(--esp-lg);
+  padding-bottom: var(--esp-lg);
+  border-bottom: 1px solid rgba(238, 246, 245, 0.1);
+}
+
+.rodape__sobre {
+  margin-top: var(--esp-sm);
+  max-width: 24rem;
+  line-height: 1.65;
+  color: rgba(214, 232, 230, 0.6);
+}
+
+.rodape__titulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--passo--2);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ouro-300);
+}
+
+.rodape__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-top: var(--esp-xs);
+}
+
+.rodape__lista a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  color: rgba(214, 232, 230, 0.75);
+  text-decoration: none;
+  transition: color var(--transicao);
+}
+
+.rodape__lista a:hover {
+  color: var(--ouro-200);
+}
+
+.rodape__lista--contato svg {
+  flex-shrink: 0;
+  color: var(--ouro-500);
+}
+
+.rodape__endereco {
+  margin-top: var(--esp-sm);
+  line-height: 1.65;
+  color: rgba(214, 232, 230, 0.6);
+}
+
+.rodape__horarios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: var(--esp-xs);
+  font-size: var(--passo--2);
+}
+
+.rodape__horarios li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+  max-width: 17rem;
+  color: rgba(214, 232, 230, 0.65);
+}
+
+.rodape__horarios span:last-child {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.rodape__fechado {
+  color: rgba(214, 232, 230, 0.4);
+}
+
+/* --- Base --- */
+
+.rodape__base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-xs) var(--esp-md);
+  padding-top: var(--esp-md);
+  font-size: var(--passo--2);
+}
+
+.rodape__direitos {
+  color: rgba(214, 232, 230, 0.55);
+}
+
+.rodape__legais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-sm);
+}
+
+.rodape__legais a {
+  color: rgba(214, 232, 230, 0.7);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--transicao), border-color var(--transicao);
+}
+
+.rodape__legais a:hover {
+  color: var(--ouro-200);
+  border-bottom-color: var(--ouro-500);
+}
+
+.rodape__disclaimer {
+  margin-top: var(--esp-md);
+  padding-top: var(--esp-sm);
+  max-width: 54rem;
+  border-top: 1px solid rgba(238, 246, 245, 0.07);
+  font-size: var(--passo--2);
+  line-height: 1.6;
+  color: rgba(214, 232, 230, 0.4);
+}
+
+@media (min-width: 44rem) {
+  .rodape__topo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 68rem) {
+  .rodape__topo {
+    grid-template-columns: 1.5fr 0.8fr 1.1fr 1.1fr;
+    gap: var(--esp-xl);
+  }
+}

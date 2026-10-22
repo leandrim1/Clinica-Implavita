@@ -1,0 +1,112 @@
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+.marca__imagem {
+  width: auto;
+  height: clamp(38px, 4.4vw, 48px);
+}
+
+.marca__simbolo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.marca__simbolo svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.marca__anel {
+  stroke: var(--ouro-500);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.marca__traco {
+  stroke: var(--ouro-600);
+  stroke-width: 1.7;
+}
+
+.marca__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.marca__nome {
+  display: flex;
+  align-items: baseline;
+  gap: 0.34rem;
+  font-family: var(--fonte-titulo);
+  font-size: 1.18rem;
+  line-height: 1;
+  color: var(--petroleo-900);
+}
+
+.marca__nome-um {
+  font-size: 0.78em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--tinta-500);
+}
+
+.marca__nome-dois {
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.marca__assinatura {
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ouro-700);
+}
+
+/* --- Sobre fundo escuro --- */
+
+.marca--claro .marca__nome {
+  color: var(--petroleo-50);
+}
+
+.marca--claro .marca__nome-um {
+  color: rgba(238, 246, 245, 0.62);
+}
+
+.marca--claro .marca__assinatura {
+  color: var(--ouro-300);
+}
+
+.marca--claro .marca__traco {
+  stroke: var(--ouro-300);
+}
+
+.marca--claro .marca__anel {
+  stroke: var(--ouro-400);
+}
+
+.marca--compacta .marca__simbolo {
+  width: 34px;
+  height: 34px;
+}
+
+.marca--compacta .marca__nome {
+  font-size: 1.05rem;
+}
+
+@media (max-width: 26rem) {
+  .marca__assinatura {
+    display: none;
+  }
+}

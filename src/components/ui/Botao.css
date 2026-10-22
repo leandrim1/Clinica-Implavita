@@ -1,0 +1,126 @@
+.botao {
+  --botao-fundo: var(--petroleo-800);
+  --botao-texto: var(--branco);
+  --botao-borda: transparent;
+  --botao-fundo-hover: var(--petroleo-700);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.82rem 1.5rem;
+  /* Área de toque confortável no celular. */
+  min-height: 48px;
+  background-color: var(--botao-fundo);
+  color: var(--botao-texto);
+  border: 1px solid var(--botao-borda);
+  border-radius: var(--raio-sm);
+  font-size: var(--passo--1);
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--transicao),
+    border-color var(--transicao),
+    color var(--transicao),
+    transform var(--transicao-rapida);
+}
+
+.botao:hover {
+  background-color: var(--botao-fundo-hover);
+}
+
+.botao:active {
+  transform: translateY(1px);
+}
+
+.botao:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.botao--lg {
+  padding: 1rem 1.9rem;
+  min-height: 54px;
+  font-size: var(--passo-0);
+}
+
+.botao--largo {
+  width: 100%;
+}
+
+.botao__icone {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform var(--transicao);
+}
+
+.botao:hover .botao__icone--direita {
+  transform: translateX(3px);
+}
+
+/* --- Variantes --- */
+
+.botao--secundario {
+  --botao-fundo: var(--ouro-600);
+  --botao-fundo-hover: var(--ouro-700);
+  --botao-texto: #1b1206;
+}
+
+.botao--contorno {
+  --botao-fundo: transparent;
+  --botao-fundo-hover: var(--petroleo-50);
+  --botao-texto: var(--petroleo-800);
+  --botao-borda: var(--cor-borda-forte);
+}
+
+.botao--contorno:hover {
+  border-color: var(--petroleo-300);
+}
+
+.botao--texto {
+  --botao-fundo: transparent;
+  --botao-fundo-hover: transparent;
+  --botao-texto: var(--petroleo-700);
+  padding-inline: 0;
+  min-height: 44px;
+}
+
+.botao--texto:hover {
+  --botao-texto: var(--ouro-700);
+}
+
+.botao--whatsapp {
+  --botao-fundo: var(--cor-whatsapp);
+  --botao-fundo-hover: var(--cor-whatsapp-escuro);
+  --botao-texto: var(--branco);
+}
+
+/* --- Ajustes sobre fundo escuro --- */
+
+.sobre-escuro .botao--contorno {
+  --botao-texto: var(--petroleo-50);
+  --botao-borda: rgba(238, 246, 245, 0.32);
+  --botao-fundo-hover: rgba(238, 246, 245, 0.08);
+}
+
+.sobre-escuro .botao--contorno:hover {
+  border-color: rgba(238, 246, 245, 0.5);
+}
+
+.sobre-escuro .botao--texto {
+  --botao-texto: var(--ouro-300);
+}
+
+.sobre-escuro .botao--texto:hover {
+  --botao-texto: var(--ouro-200);
+}
+
+@media (max-width: 30rem) {
+  .botao {
+    width: 100%;
+  }
+}

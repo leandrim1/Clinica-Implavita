@@ -1,0 +1,26 @@
+.nao-encontrada {
+  display: grid;
+  align-items: center;
+  min-height: 62vh;
+  padding-block: var(--esp-2xl);
+}
+
+.nao-encontrada__titulo {
+  margin-top: var(--esp-xs);
+  font-size: var(--passo-4);
+}
+
+.nao-encontrada__texto {
+  margin-top: var(--esp-sm);
+  max-width: 34rem;
+  font-size: var(--passo-1);
+  line-height: 1.65;
+  color: var(--tinta-500);
+}
+
+.nao-encontrada__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-sm);
+  margin-top: var(--esp-lg);
+}

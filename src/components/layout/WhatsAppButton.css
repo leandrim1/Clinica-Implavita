@@ -1,0 +1,56 @@
+.whatsapp-flutuante {
+  position: fixed;
+  right: clamp(0.9rem, 3vw, 1.75rem);
+  bottom: calc(clamp(0.9rem, 3vw, 1.75rem) + env(safe-area-inset-bottom));
+  z-index: var(--z-flutuante);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.15rem;
+  min-height: 54px;
+
+  background-color: var(--cor-whatsapp);
+  color: var(--branco);
+  border-radius: var(--raio-pilula);
+  box-shadow: var(--sombra-flutuante);
+  text-decoration: none;
+  font-size: var(--passo--1);
+  font-weight: 600;
+
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  pointer-events: none;
+  transition:
+    opacity var(--transicao),
+    transform var(--transicao),
+    background-color var(--transicao);
+}
+
+.whatsapp-flutuante--visivel {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.whatsapp-flutuante:hover {
+  background-color: var(--cor-whatsapp-escuro);
+}
+
+.whatsapp-flutuante svg {
+  flex-shrink: 0;
+}
+
+/* No celular o botão vira círculo, para não cobrir o conteúdo. */
+@media (max-width: 36rem) {
+  .whatsapp-flutuante {
+    padding: 0;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+  }
+
+  .whatsapp-flutuante__rotulo {
+    display: none;
+  }
+}

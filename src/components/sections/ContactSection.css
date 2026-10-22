@@ -1,0 +1,234 @@
+.contato {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.25rem);
+  align-items: start;
+}
+
+.contato__coluna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-md);
+  min-width: 0;
+}
+
+/* --- Dados --- */
+
+.contato__dados {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-md);
+}
+
+.contato__dados li {
+  display: flex;
+  gap: var(--esp-sm);
+}
+
+.contato__icone {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  color: var(--ouro-700);
+  background-color: var(--ouro-100);
+  border-radius: var(--raio-sm);
+}
+
+.contato__rotulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--passo--2);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-400);
+}
+
+.contato__valor {
+  margin-top: 0.3rem;
+  font-size: var(--passo-0);
+  line-height: 1.6;
+  color: var(--tinta-800);
+}
+
+.contato__valor a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--cor-borda-forte);
+  transition: color var(--transicao), border-color var(--transicao);
+}
+
+.contato__valor a:hover {
+  color: var(--petroleo-700);
+  border-color: var(--petroleo-500);
+}
+
+.contato__link {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: var(--passo--1);
+  font-weight: 600;
+  color: var(--petroleo-700);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ouro-400);
+  transition: color var(--transicao);
+}
+
+.contato__link:hover {
+  color: var(--ouro-700);
+}
+
+/* --- Horários --- */
+
+.contato__horarios {
+  padding-top: var(--esp-md);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.contato__rotulo--horarios {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--tinta-500);
+}
+
+.contato__rotulo--horarios svg {
+  color: var(--ouro-600);
+}
+
+.horarios {
+  margin-top: var(--esp-xs);
+}
+
+.horarios__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+  padding: 0.52rem 0;
+  font-size: var(--passo--1);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.horarios__item:last-child {
+  border-bottom: none;
+}
+
+.horarios__item--hoje {
+  font-weight: 600;
+  color: var(--petroleo-900);
+}
+
+.horarios__dia {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--tinta-600);
+}
+
+.horarios__item--hoje .horarios__dia {
+  color: var(--petroleo-900);
+}
+
+.horarios__marca {
+  padding: 0.1rem 0.42rem;
+  font-size: 0.68em;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ouro-700);
+  background-color: var(--ouro-100);
+  border-radius: var(--raio-pilula);
+}
+
+.horarios__faixa {
+  color: var(--tinta-700);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.horarios__faixa--fechado {
+  color: var(--tinta-400);
+}
+
+.contato__whatsapp {
+  margin-top: var(--esp-2xs);
+}
+
+/* --- Mapa --- */
+
+.mapa {
+  overflow: hidden;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-xs);
+  background-color: var(--tinta-50);
+}
+
+.mapa--inativo {
+  display: grid;
+  justify-items: center;
+  gap: var(--esp-xs);
+  padding: var(--esp-lg) var(--esp-md);
+  text-align: center;
+}
+
+.mapa__icone {
+  color: var(--ouro-600);
+}
+
+.mapa__texto {
+  max-width: 26rem;
+  font-size: var(--passo--1);
+  line-height: 1.6;
+  color: var(--tinta-500);
+}
+
+.mapa__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--esp-2xs) var(--esp-sm);
+  margin-top: var(--esp-2xs);
+}
+
+.mapa__quadro {
+  display: block;
+  width: 100%;
+  height: 20rem;
+  border: 0;
+}
+
+/* --- Cartão do formulário --- */
+
+.contato__cartao {
+  padding: clamp(1.5rem, 3.6vw, 2.25rem);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-top: 3px solid var(--petroleo-800);
+  box-shadow: var(--sombra-cartao);
+}
+
+.contato__cartao-titulo {
+  font-size: var(--passo-2);
+}
+
+.contato__cartao-texto {
+  margin-block: 0.45rem var(--esp-md);
+  font-size: var(--passo--1);
+  line-height: 1.6;
+  color: var(--tinta-500);
+}
+
+@media (min-width: 60rem) {
+  .contato {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .contato__coluna--formulario {
+    position: sticky;
+    top: calc(var(--altura-cabecalho) + 1.5rem);
+  }
+}

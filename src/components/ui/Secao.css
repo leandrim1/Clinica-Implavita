@@ -1,0 +1,67 @@
+.secao {
+  position: relative;
+  padding-block: var(--ritmo-secao);
+}
+
+.secao--esp-compacto {
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.secao--esp-amplo {
+  padding-block: clamp(4.5rem, 10vw, 8.5rem);
+}
+
+.secao--papel {
+  background-color: var(--cor-fundo);
+}
+
+.secao--alternado {
+  background-color: var(--cor-fundo-alt);
+}
+
+.secao--escuro {
+  background-color: var(--petroleo-900);
+  color: var(--cor-texto-inverso);
+}
+
+.secao--petroleo {
+  background-color: var(--petroleo-850);
+  color: var(--cor-texto-inverso);
+}
+
+.sobre-escuro h2,
+.sobre-escuro h3,
+.sobre-escuro h4 {
+  color: var(--branco);
+}
+
+/* --- Cabeçalho de seção --- */
+
+.titulo-secao {
+  max-width: 44rem;
+  margin-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.titulo-secao--centro {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.titulo-secao--centro .sobretitulo {
+  justify-content: center;
+}
+
+.titulo-secao__titulo {
+  margin-top: var(--esp-xs);
+}
+
+.titulo-secao__descricao {
+  margin-top: var(--esp-sm);
+  font-size: var(--passo-1);
+  line-height: 1.6;
+  color: var(--cor-texto-suave);
+}
+
+.sobre-escuro .titulo-secao__descricao {
+  color: rgba(214, 232, 230, 0.78);
+}

@@ -1,0 +1,129 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-sm);
+}
+
+.formulario__linha {
+  display: grid;
+  gap: var(--esp-sm);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.campo__rotulo {
+  font-size: var(--passo--1);
+  font-weight: 600;
+  color: var(--tinta-700);
+}
+
+.campo__rotulo span {
+  color: var(--ouro-700);
+}
+
+.campo__entrada {
+  width: 100%;
+  /* 16px evita o zoom automático do iOS ao focar o campo. */
+  font-size: 16px;
+  padding: 0.8rem 0.95rem;
+  min-height: 48px;
+  color: var(--tinta-900);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-sm);
+  transition:
+    border-color var(--transicao),
+    box-shadow var(--transicao);
+}
+
+.campo__entrada::placeholder {
+  color: var(--tinta-300);
+}
+
+.campo__entrada:hover {
+  border-color: var(--tinta-300);
+}
+
+.campo__entrada:focus {
+  outline: none;
+  border-color: var(--petroleo-600);
+  box-shadow: 0 0 0 3px rgba(43, 135, 130, 0.16);
+}
+
+.campo__entrada--erro {
+  border-color: var(--cor-erro);
+}
+
+.campo__entrada--erro:focus {
+  box-shadow: 0 0 0 3px rgba(166, 50, 43, 0.14);
+}
+
+.campo__area {
+  min-height: 7.5rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.campo__selecao {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23556b69' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+
+.campo__erro {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--passo--2);
+  font-weight: 500;
+  color: var(--cor-erro);
+}
+
+.campo__erro svg {
+  flex-shrink: 0;
+}
+
+.formulario__aviso {
+  font-size: var(--passo--2);
+  line-height: 1.55;
+  color: var(--tinta-400);
+}
+
+/* --- Resumo pós-validação --- */
+
+.formulario__resumo {
+  margin-top: var(--esp-2xs);
+  padding: var(--esp-md);
+  background-color: var(--petroleo-50);
+  border: 1px solid var(--petroleo-100);
+  border-left: 3px solid var(--cor-sucesso);
+  border-radius: var(--raio-xs);
+}
+
+.formulario__resumo:focus-visible {
+  outline-offset: 2px;
+}
+
+.formulario__resumo-titulo {
+  font-size: var(--passo-1);
+}
+
+.formulario__resumo-texto {
+  margin-block: 0.4rem var(--esp-sm);
+  font-size: var(--passo--1);
+  line-height: 1.6;
+  color: var(--tinta-600);
+}
+
+@media (min-width: 34rem) {
+  .formulario__linha {
+    grid-template-columns: 1fr 1fr;
+  }
+}

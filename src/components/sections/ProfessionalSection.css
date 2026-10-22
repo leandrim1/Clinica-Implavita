@@ -1,0 +1,195 @@
+.profissional {
+  padding-block: var(--ritmo-secao);
+  background-color: var(--cor-fundo);
+}
+
+.profissional--escuro {
+  background-color: var(--petroleo-900);
+  color: rgba(214, 232, 230, 0.82);
+}
+
+.profissional__interno {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+
+/* --- Visual --- */
+
+.profissional__moldura {
+  position: relative;
+  margin: 0;
+  max-width: 24rem;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--petroleo-50);
+  border-radius: 2px 92px 2px 2px;
+}
+
+.profissional--inverso .profissional__moldura {
+  border-radius: 92px 2px 2px 2px;
+}
+
+.profissional--escuro .profissional__moldura {
+  background-color: var(--petroleo-850);
+  border: 1px solid rgba(195, 154, 106, 0.2);
+}
+
+.profissional__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profissional__medalhao {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--esp-sm);
+  width: 100%;
+  height: 100%;
+  padding: var(--esp-md);
+  text-align: center;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(195, 154, 106, 0.16) 0%, transparent 62%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 11px,
+      rgba(21, 83, 80, 0.045) 11px 12px
+    );
+}
+
+.profissional__iniciais {
+  display: grid;
+  place-items: center;
+  width: clamp(7rem, 16vw, 9.5rem);
+  aspect-ratio: 1;
+  border: 1px solid var(--ouro-400);
+  border-radius: 50%;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ouro-700);
+}
+
+.profissional--escuro .profissional__iniciais {
+  color: var(--ouro-300);
+  border-color: var(--ouro-500);
+}
+
+.profissional__medalhao-nota {
+  font-size: var(--passo--2);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-400);
+}
+
+.profissional--escuro .profissional__medalhao-nota {
+  color: rgba(214, 232, 230, 0.45);
+}
+
+/* --- Conteúdo --- */
+
+.profissional__nome {
+  margin-top: var(--esp-xs);
+  font-size: var(--passo-4);
+}
+
+.profissional__atuacao {
+  margin-top: 0.4rem;
+  font-size: var(--passo-1);
+  font-weight: 600;
+  color: var(--ouro-700);
+}
+
+.profissional--escuro .profissional__atuacao {
+  color: var(--ouro-300);
+}
+
+.profissional__descricao {
+  margin-top: var(--esp-md);
+  max-width: 34rem;
+  font-size: var(--passo-0);
+  line-height: 1.7;
+  color: var(--tinta-600);
+}
+
+.profissional--escuro .profissional__descricao {
+  color: rgba(214, 232, 230, 0.78);
+}
+
+.profissional__destaques {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-xs);
+  margin-top: var(--esp-md);
+}
+
+.profissional__destaques li {
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1.1rem;
+  border-left: 3px solid var(--ouro-500);
+  background-color: var(--ouro-100);
+}
+
+.profissional--escuro .profissional__destaques li {
+  background-color: rgba(195, 154, 106, 0.1);
+}
+
+.profissional__destaques strong {
+  font-family: var(--fonte-titulo);
+  font-size: var(--passo-1);
+  font-weight: 600;
+  color: var(--petroleo-900);
+}
+
+.profissional--escuro .profissional__destaques strong {
+  color: var(--branco);
+}
+
+.profissional__destaques small {
+  font-size: var(--passo--2);
+  color: var(--tinta-500);
+}
+
+.profissional--escuro .profissional__destaques small {
+  color: rgba(214, 232, 230, 0.55);
+}
+
+.profissional__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-sm) var(--esp-md);
+  margin-top: var(--esp-lg);
+}
+
+/* --- Responsivo --- */
+
+@media (min-width: 58rem) {
+  .profissional__interno {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+
+  .profissional__moldura {
+    max-width: 100%;
+  }
+
+  .profissional--inverso .profissional__visual {
+    order: 2;
+  }
+
+  .profissional--inverso .profissional__conteudo {
+    order: 1;
+  }
+}
+
+@media (max-width: 30rem) {
+  .profissional__acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
