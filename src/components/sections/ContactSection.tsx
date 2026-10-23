@@ -4,7 +4,7 @@ import { Clock, Instagram, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { FormularioContato } from '@/components/sections/FormularioContato';
 import { Botao } from '@/components/ui/Botao';
 import { Secao, TituloSecao } from '@/components/ui/Secao';
-import { CONTATO, ENDERECO, FACHADA, HORARIOS } from '@/config/clinica';
+import { CONTATO, ENDERECO, FACHADA, HORARIOS, TEXTOS } from '@/config/clinica';
 import { linkWhatsApp } from '@/lib/whatsapp';
 
 import './ContactSection.css';
@@ -66,8 +66,8 @@ export function ContactSection() {
     <Secao id="contato" fundo="papel" rotuladaPor="contato-titulo">
       <TituloSecao
         sobretitulo="Localização e contato"
-        titulo="Fale com a Implavita"
-        descricao={`Atendemos em ${ENDERECO.bairro}, ${ENDERECO.cidade}. Fale pelo WhatsApp, ligue ou venha conhecer a clínica.`}
+        titulo={TEXTOS.contato.titulo}
+        descricao={TEXTOS.contato.descricao}
         id="contato-titulo"
       />
 
@@ -84,9 +84,7 @@ export function ContactSection() {
                 decoding="async"
                 className="fachada__foto"
               />
-              <figcaption className="fachada__legenda">
-                Procure por esta fachada em {ENDERECO.bairro}.
-              </figcaption>
+              <figcaption className="fachada__legenda">{FACHADA.legenda}</figcaption>
             </figure>
           ) : null}
 

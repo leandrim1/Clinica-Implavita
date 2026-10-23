@@ -6,27 +6,46 @@ dados, autenticação, painel administrativo nem integração com agenda.
 
 ## Tecnologias
 
-| Recurso | Escolha |
+| Camada | Escolha |
 | --- | --- |
-| Biblioteca | React 18 + TypeScript (modo `strict`) |
+| Interface | React 18 + TypeScript (`strict`) |
 | Build | Vite 5 |
-| Rotas | React Router 6 |
-| Ícones | lucide-react |
+| Rotas | React Router 7 |
 | Estilo | CSS por componente + camada de tokens (sem framework) |
+| Ícones | lucide-react |
+| API | Node + Express 5 |
+| Banco | PostgreSQL (pronto para Neon) |
+| Validação | Zod, com esquemas compartilhados entre front e back |
+| Imagens | sharp (conversão para WebP no envio) |
 
-Apenas quatro dependências de execução: `react`, `react-dom`, `react-router-dom`
-e `lucide-react`. Optamos por CSS próprio em vez de Tailwind para que a direção
-de arte fosse desenhada para a Implavita, sem a aparência de template pronto.
+Optamos por CSS próprio em vez de Tailwind para que a direção de arte fosse
+desenhada para a Implavita, sem aparência de template pronto.
 
 ## Como rodar
 
 ```bash
 npm install
-npm run dev        # ambiente de desenvolvimento
-npm run build      # verificação de tipos + build de produção
-npm run preview    # serve a build gerada
-npm run typecheck  # apenas a verificação de tipos
+cp .env.example .env   # ajuste DATABASE_URL e SEGREDO_SESSAO
+npm run db:semear      # cria as tabelas, carrega o conteúdo e o 1º admin
+npm run dev:api        # API   -> http://localhost:3333
+npm run dev            # site  -> http://localhost:5173
 ```
+
+O site abre em `/` e o painel em `/admin`.
+
+| Comando | O que faz |
+| --- | --- |
+| `npm run dev` | site em desenvolvimento (faz proxy de `/api`) |
+| `npm run dev:api` | API em desenvolvimento, com recarga |
+| `npm run build` | verificação de tipos + build do site |
+| `npm run build:api` | compila a API para `server/dist` |
+| `npm start` | sobe a API compilada |
+| `npm run db:migrar` | aplica migrações pendentes |
+| `npm run db:semear` | migra, carrega o conteúdo inicial e cria o 1º admin |
+
+> O site funciona mesmo sem a API no ar: se ela não responder em 2,5 s, a
+> página renderiza com o conteúdo empacotado em `shared/conteudoPadrao.ts`.
+> Um backend fora do ar nunca deixa a clínica sem site.
 
 > O arquivo `public/_redirects` já direciona as rotas internas para o
 > `index.html`. Em servidores que não leem esse arquivo (Apache, Nginx, IIS),
@@ -34,20 +53,31 @@ npm run typecheck  # apenas a verificação de tipos
 
 ## Onde editar o conteúdo
 
-**Praticamente tudo que a clínica vai querer alterar está em um único arquivo:**
+**Pelo painel, em `/admin`** — é para isso que ele existe. A clínica altera
+textos, fotos, profissionais, tratamentos, horários e dados de contato sem
+tocar no código, e a alteração vai ao ar no mesmo instante.
 
-### `src/config/clinica.ts`
+O painel cobre:
 
-Endereço, telefone, redes sociais, horários, profissionais, tratamentos,
-indicadores, etapas de agendamento, ambientes e casos clínicos. Os componentes
-apenas consomem esses dados — nenhum texto institucional está embutido no código
-visual.
+| Seção | O que dá para mudar |
+| --- | --- |
+| Textos do site | títulos e textos de cada seção, inclusive os avisos legais |
+| Profissionais | nome, atuação, CRO, descrição, destaques e foto |
+| Tratamentos | cartões, tópicos, ícone, responsável e destaque |
+| Imagens do site | logotipo, primeira dobra, fachada, ambientes, galeria e casos |
+| Dados da clínica | identificação, endereço, contatos, horários e reputação |
+| Contatos | mensagens recebidas pelo formulário |
+| Biblioteca de mídia | envio e exclusão de imagens |
+| Usuários | contas, papéis e acesso |
 
-Outros pontos de edição:
+Cada alteração guarda a versão anterior, então dá para voltar atrás.
+
+Continuam no código:
 
 - `src/lib/whatsapp.ts` — mensagens iniciais do WhatsApp, por contexto.
 - `src/pages/PrivacidadePage.tsx` e `src/pages/InformacoesLegaisPage.tsx` — textos legais.
 - `src/styles/tokens.css` — cores, tipografia e espaçamentos.
+- `shared/conteudoPadrao.ts` — o conteúdo de partida, usado como rede de segurança.
 
 ## Identidade visual
 
@@ -111,13 +141,14 @@ a uma e divididas em dois grupos em `CASOS_CLINICOS`:
 - **`identificavel: true`** (9 imagens) — fotos em que **o rosto do paciente
   aparece**. Estão no repositório, catalogadas, mas **fora do ar**.
 
-Para publicar o segundo grupo, a clínica precisa ter **autorização de uso de
-imagem assinada por cada paciente**. Com as autorizações em mãos, basta alterar
-em `src/config/clinica.ts`:
+A trava agora é **por paciente** e fica no painel, em *Imagens do site →
+Casos clínicos*. Cada caso tem duas chaves: uma marca que o paciente pode ser
+reconhecido, a outra registra que a **autorização de uso de imagem assinada**
+está em mãos. Sem a segunda, a imagem não vai ao ar.
 
-```ts
-export const EXIBIR_CASOS_IDENTIFICAVEIS = true;
-```
+O filtro é aplicado no servidor, antes de o conteúdo público sair da API, e
+repetido no cliente — então uma imagem sem autorização não aparece nem quando
+o site roda com o conteúdo padrão.
 
 Essa trava existe porque publicar a imagem de um paciente identificável sem
 autorização expressa contraria o Código de Ética Odontológica e a LGPD — e o
@@ -128,9 +159,10 @@ risco recai sobre a clínica, não sobre o site.
 - **WhatsApp contextual** — `linkWhatsApp(contexto)` gera o link `wa.me` com a
   mensagem inicial já codificada para URL. Contextos: agendamento, implantes,
   reabilitação, avaliação, harmonização, geral e formulário.
-- **Formulário demonstrativo** — valida nome, telefone (com máscara progressiva),
-  assunto e mensagem. **Não envia e não armazena nada.** Após a validação, monta
-  a mensagem e oferece abrir o WhatsApp, deixando o envio com o visitante.
+- **Formulário de contato** — valida nome, telefone (com máscara progressiva),
+  assunto e mensagem; registra o recado para a clínica e, em seguida, abre o
+  WhatsApp com o texto pronto. Se o registro falhar, o caminho do WhatsApp
+  continua funcionando.
 - **Mapa sob demanda** — o iframe do Google só é montado se a pessoa pedir,
   mantendo a primeira carga leve e sem cookies de terceiros.
 - **Navegação** — rolagem suave, menu mobile com trava de rolagem, foco preso e
@@ -161,9 +193,11 @@ sempre identificados como informados pela clínica.
 > Antes de publicar, troque `CLINICA.site` em `clinica.ts` e as URLs em
 > `public/robots.txt` e `public/sitemap.xml` pelo domínio definitivo.
 
-## Limites desta fase
+## O que ainda não existe
 
-Não foram implementados — e a arquitetura está preparada para recebê-los depois:
-banco de dados, backend, login, painel administrativo, agendamento integrado,
-envio de formulário para servidor, pagamentos, prontuários ou armazenamento de
-dados de pacientes.
+Agendamento integrado a uma agenda real, pagamentos e prontuário eletrônico.
+O site segue sem confirmar consultas sozinho: a data é combinada com a equipe
+pelo WhatsApp ou por telefone, e a página diz isso ao visitante.
+
+Nenhum dado clínico de paciente é armazenado. O banco guarda conteúdo do site,
+contas do painel, imagens enviadas e as mensagens do formulário de contato.

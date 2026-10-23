@@ -3,16 +3,22 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { App } from '@/App';
+import { hidratarConteudo } from '@/config/conteudo';
 import { dadosEstruturadosClinica } from '@/lib/seo';
 
 import '@/styles/tokens.css';
 import '@/styles/base.css';
 import '@/styles/utilitarios.css';
 
-/** Publica os dados estruturados da clínica no <head>. */
-function injetarDadosEstruturados() {
-  const existente = document.getElementById('dados-estruturados');
-  if (existente) return;
+const raiz = document.getElementById('root');
+
+if (!raiz) {
+  throw new Error('Elemento #root não encontrado no documento.');
+}
+
+/** Publica os dados estruturados já com o conteúdo vigente. */
+function injetarDadosEstruturados(): void {
+  if (document.getElementById('dados-estruturados')) return;
 
   const script = document.createElement('script');
   script.id = 'dados-estruturados';
@@ -21,18 +27,28 @@ function injetarDadosEstruturados() {
   document.head.appendChild(script);
 }
 
-injetarDadosEstruturados();
+/**
+ * Busca o conteúdo antes de montar a aplicação.
+ *
+ * A camada de configuração lê o conteúdo sob demanda, então os imports acima
+ * podem ser estáticos — o que mantém o site num bundle só. Se a API não
+ * responder a tempo, seguimos com o conteúdo empacotado e a página abre
+ * normalmente.
+ */
+hidratarConteudo()
+  .catch(() => 'padrao' as const)
+  .then((origem) => {
+    if (origem === 'padrao' && import.meta.env.DEV) {
+      console.warn('[conteúdo] API indisponível; usando o conteúdo padrão.');
+    }
 
-const raiz = document.getElementById('root');
+    injetarDadosEstruturados();
 
-if (!raiz) {
-  throw new Error('Elemento #root não encontrado no documento.');
-}
-
-createRoot(raiz).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-);
+    createRoot(raiz).render(
+      <StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </StrictMode>,
+    );
+  });

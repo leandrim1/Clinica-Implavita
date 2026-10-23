@@ -1,0 +1,107 @@
+.contatos__abas {
+  display: inline-flex;
+  padding: 0.2rem;
+  background-color: var(--tinta-100);
+  border-radius: var(--raio-sm);
+}
+
+.contatos__aba {
+  padding: 0.5rem 0.9rem;
+  min-height: 40px;
+  font-size: var(--passo--2);
+  font-weight: 600;
+  color: var(--tinta-500);
+  border-radius: var(--raio-xs);
+  transition: background-color var(--transicao), color var(--transicao);
+}
+
+.contatos__aba--ativa {
+  background-color: var(--branco);
+  color: var(--petroleo-900);
+  box-shadow: var(--sombra-sutil);
+}
+
+.contatos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-sm);
+}
+
+.contato {
+  padding: var(--esp-md);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+}
+
+.contato--novo {
+  border-left: 3px solid var(--ouro-500);
+}
+
+.contato__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+}
+
+.contato__nome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fonte-texto);
+  font-size: var(--passo-0);
+  font-weight: 700;
+  color: var(--petroleo-900);
+}
+
+.contato__selo {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1b1206;
+  background-color: var(--ouro-300);
+  border-radius: var(--raio-pilula);
+}
+
+.contato__meta {
+  margin-top: 0.15rem;
+  font-size: var(--passo--2);
+  color: var(--tinta-400);
+}
+
+.contato__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.contato__mensagem {
+  margin-top: var(--esp-sm);
+  padding: 0.8rem 1rem;
+  font-size: var(--passo--1);
+  line-height: 1.65;
+  color: var(--tinta-700);
+  background-color: var(--tinta-50);
+  border-radius: var(--raio-xs);
+  white-space: pre-wrap;
+}
+
+.contato__rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: var(--esp-sm);
+  padding-top: var(--esp-sm);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.contatos__vazio {
+  padding: var(--esp-lg) 0;
+  text-align: center;
+  font-size: var(--passo--1);
+  color: var(--tinta-400);
+}

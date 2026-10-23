@@ -70,11 +70,7 @@ export function TreatmentsSection() {
         ))}
       </div>
 
-      <p className="tratamentos__aviso">
-        As informações desta página são de caráter informativo e não substituem uma
-        consulta. A indicação de qualquer tratamento depende de avaliação clínica
-        individual, e os resultados variam de paciente para paciente.
-      </p>
+      <p className="tratamentos__aviso">{TEXTOS.avisoTratamentos}</p>
     </Secao>
   );
 }

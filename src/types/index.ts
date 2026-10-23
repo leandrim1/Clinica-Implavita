@@ -49,13 +49,13 @@ export interface Profissional {
   readonly atuacao: string;
   /** Registro no Conselho Regional de Odontologia, confirmado pela clínica. */
   readonly cro: string;
+  readonly contexto: ContextoWhatsApp;
   readonly descricao: string;
   /** Destaques fornecidos pela clínica. Não adicionar dados não confirmados. */
   readonly destaques: readonly string[];
   /** Caminho da foto oficial. `null` enquanto a clínica não fornecer o arquivo. */
   readonly foto: string | null;
   readonly iniciais: string;
-  readonly contexto: ContextoWhatsApp;
   readonly rotuloBotao: string;
 }
 
@@ -96,10 +96,11 @@ export interface CasoClinico {
   readonly categoria: 'implantes' | 'reabilitacao' | 'harmonizacao';
   /**
    * `true` quando a imagem permite identificar o paciente (rosto visível).
-   * Imagens identificáveis só devem ser publicadas com autorização de uso
-   * de imagem assinada pelo paciente.
+   * Imagens identificáveis só vão ao ar com `autorizado`.
    */
   readonly identificavel: boolean;
+  /** Autorização de uso de imagem registrada para este paciente. */
+  readonly autorizado: boolean;
 }
 
 export interface AmbienteClinica {

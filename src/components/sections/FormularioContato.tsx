@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { AlertCircle, MessageCircle, Send } from 'lucide-react';
 
+import { enviarContato } from '@/api/conteudo';
 import { Botao } from '@/components/ui/Botao';
 import { TRATAMENTOS } from '@/config/clinica';
 import {
@@ -22,18 +23,22 @@ const ASSUNTOS: readonly string[] = [
 const VAZIO: DadosFormulario = { nome: '', telefone: '', assunto: '', mensagem: '' };
 
 /**
- * Formulário demonstrativo.
+ * Formulário de contato.
  *
- * Esta fase do projeto não tem backend, então nada é enviado nem armazenado:
- * o formulário valida os campos e monta a mensagem que o próprio visitante
- * envia pelo WhatsApp. O botão só revela o link depois da validação, e em
- * nenhum momento afirmamos que a mensagem foi recebida pela clínica.
+ * A mensagem é registrada na clínica e, em seguida, o visitante é levado ao
+ * WhatsApp com o texto pronto — é ele quem envia. Os dois caminhos existem
+ * de propósito: se a pessoa desistir no meio, a clínica ainda tem o recado.
+ *
+ * Se o registro falhar, o fluxo do WhatsApp continua funcionando: o que
+ * importa é a pessoa conseguir falar com a clínica.
  */
 export function FormularioContato() {
   const [dados, setDados] = useState<DadosFormulario>(VAZIO);
   const [erros, setErros] = useState<ErrosFormulario>({});
   const [tocados, setTocados] = useState<Partial<Record<CampoFormulario, boolean>>>({});
   const [pronto, setPronto] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [registrado, setRegistrado] = useState(false);
   const resumoRef = useRef<HTMLDivElement>(null);
 
   function atualizar(campo: CampoFormulario, valor: string) {
@@ -53,7 +58,7 @@ export function FormularioContato() {
     setErros((anterior) => ({ ...anterior, [campo]: validarCampo(campo, dados[campo]) }));
   }
 
-  function aoEnviar(evento: React.FormEvent<HTMLFormElement>) {
+  async function aoEnviar(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
 
     const novosErros = validarFormulario(dados);
@@ -66,6 +71,17 @@ export function FormularioContato() {
       setPronto(false);
       document.getElementById(`campo-${campoComErro}`)?.focus();
       return;
+    }
+
+    setEnviando(true);
+    try {
+      await enviarContato(dados);
+      setRegistrado(true);
+    } catch {
+      // Falha ao registrar não impede o contato: seguimos para o WhatsApp.
+      setRegistrado(false);
+    } finally {
+      setEnviando(false);
     }
 
     setPronto(true);
@@ -191,13 +207,18 @@ export function FormularioContato() {
         ) : null}
       </div>
 
-      <Botao tipo="submit" variante="primario" iconeEsquerda={<Send size={17} />}>
-        Revisar e continuar no WhatsApp
+      <Botao
+        tipo="submit"
+        variante="primario"
+        iconeEsquerda={<Send size={17} />}
+        desabilitado={enviando}
+      >
+        {enviando ? 'Enviando…' : 'Enviar e continuar no WhatsApp'}
       </Botao>
 
       <p className="formulario__aviso">
-        Este formulário não envia nem armazena dados. Ao continuar, suas informações
-        são usadas apenas para montar a mensagem que você mesmo envia pelo WhatsApp.
+        Seus dados são usados apenas para a clínica entrar em contato. Ao continuar,
+        abrimos o WhatsApp com a mensagem pronta — o envio é seu.
       </p>
 
       {/* `aria-live` anuncia o resultado para quem usa leitor de tela. */}
@@ -206,8 +227,9 @@ export function FormularioContato() {
           <div className="formulario__resumo" ref={resumoRef} tabIndex={-1}>
             <h3 className="formulario__resumo-titulo">Tudo certo, {dados.nome.split(' ')[0]}!</h3>
             <p className="formulario__resumo-texto">
-              Sua mensagem está pronta. Toque no botão abaixo para abrir o WhatsApp da
-              clínica com o texto já preenchido — é você quem envia.
+              {registrado
+                ? 'Sua mensagem chegou à clínica. Para falar agora mesmo, toque no botão abaixo: o WhatsApp abre com o texto já preenchido.'
+                : 'Sua mensagem está pronta. Toque no botão abaixo para abrir o WhatsApp da clínica com o texto já preenchido — é você quem envia.'}
             </p>
 
             <Botao

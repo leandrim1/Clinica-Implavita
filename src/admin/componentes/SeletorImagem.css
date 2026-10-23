@@ -1,0 +1,219 @@
+.seletor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.seletor__previa {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-sm);
+  padding: 0.75rem;
+  background-color: var(--tinta-50);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+}
+
+.seletor__imagem {
+  width: 108px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: var(--raio-xs);
+  background-color: var(--tinta-100);
+  flex-shrink: 0;
+}
+
+.seletor__vazio {
+  display: grid;
+  place-items: center;
+  gap: 0.3rem;
+  width: 108px;
+  height: 108px;
+  flex-shrink: 0;
+  font-size: var(--passo--2);
+  color: var(--tinta-400);
+  text-align: center;
+  background-color: var(--branco);
+  border: 1px dashed var(--cor-borda-forte);
+  border-radius: var(--raio-xs);
+}
+
+.seletor__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* --- Janela da biblioteca --- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: var(--esp-sm);
+}
+
+.modal__fundo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background-color: rgba(4, 32, 31, 0.55);
+  border: 0;
+}
+
+.modal__painel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(60rem, 100%);
+  max-height: min(42rem, 92vh);
+  background-color: var(--branco);
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-alta);
+  overflow: hidden;
+}
+
+.modal__cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+  padding: var(--esp-sm) var(--esp-md);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.modal__titulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--passo-0);
+  font-weight: 700;
+  color: var(--petroleo-900);
+}
+
+.modal__fechar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--tinta-600);
+  border-radius: var(--raio-sm);
+}
+
+.modal__fechar:hover {
+  background-color: var(--tinta-50);
+}
+
+.modal__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-sm);
+  padding: var(--esp-sm) var(--esp-md);
+  border-bottom: 1px solid var(--cor-borda);
+  background-color: var(--tinta-50);
+}
+
+.modal__enviar {
+  cursor: pointer;
+}
+
+.modal__dica {
+  flex: 1 1 18rem;
+  font-size: var(--passo--2);
+  line-height: 1.5;
+  color: var(--tinta-400);
+}
+
+.modal__erro {
+  padding: 0.7rem var(--esp-md);
+  font-size: var(--passo--2);
+  color: var(--cor-erro);
+  background-color: #fdf2f1;
+}
+
+.modal__corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--esp-md);
+}
+
+.modal__vazio {
+  padding: var(--esp-lg) 0;
+  text-align: center;
+  font-size: var(--passo--1);
+  color: var(--tinta-400);
+}
+
+.modal__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--esp-sm);
+}
+
+.modal__item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-xs);
+  transition: border-color var(--transicao), transform var(--transicao-rapida);
+}
+
+.modal__item:hover {
+  border-color: var(--petroleo-500);
+  transform: translateY(-2px);
+}
+
+.modal__item img,
+.midia-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background-color: var(--tinta-100);
+}
+
+.modal__item-info {
+  display: block;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.68rem;
+  color: var(--tinta-400);
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Item com exclusão --- */
+
+.midia-item {
+  overflow: hidden;
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-xs);
+}
+
+.midia-item__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+  padding-right: 0.35rem;
+}
+
+.midia-item__excluir {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--tinta-400);
+  border-radius: var(--raio-xs);
+  transition: color var(--transicao), background-color var(--transicao);
+}
+
+.midia-item__excluir:hover {
+  color: var(--cor-erro);
+  background-color: #fdf2f1;
+}

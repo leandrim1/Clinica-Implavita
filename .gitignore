@@ -8,3 +8,8 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Arquivos locais do servidor
+.env
+server/dist
+public/midia/enviados

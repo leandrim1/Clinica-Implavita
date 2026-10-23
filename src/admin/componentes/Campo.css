@@ -1,0 +1,181 @@
+.campo-adm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.campo-adm__rotulo {
+  font-size: var(--passo--1);
+  font-weight: 600;
+  color: var(--tinta-700);
+}
+
+.campo-adm__rotulo span {
+  color: var(--ouro-700);
+}
+
+.campo-adm__entrada {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  min-height: 44px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--tinta-900);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+.campo-adm__entrada:hover {
+  border-color: var(--tinta-300);
+}
+
+.campo-adm__entrada:focus {
+  outline: none;
+  border-color: var(--petroleo-600);
+  box-shadow: 0 0 0 3px rgba(43, 135, 130, 0.16);
+}
+
+.campo-adm--erro .campo-adm__entrada {
+  border-color: var(--cor-erro);
+}
+
+.campo-adm__area {
+  min-height: 6rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.campo-adm__selecao {
+  appearance: none;
+  padding-right: 2.4rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='8' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23556b69' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  cursor: pointer;
+}
+
+.campo-adm__ajuda {
+  font-size: var(--passo--2);
+  line-height: 1.5;
+  color: var(--tinta-400);
+}
+
+.campo-adm__erro {
+  font-size: var(--passo--2);
+  font-weight: 500;
+  color: var(--cor-erro);
+}
+
+.campo-adm__contador {
+  align-self: flex-end;
+  font-size: var(--passo--2);
+  color: var(--tinta-300);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Interruptor --- */
+
+.campo-adm--interruptor {
+  gap: 0.3rem;
+}
+
+.interruptor {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.interruptor__entrada {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.interruptor__trilho {
+  position: relative;
+  flex-shrink: 0;
+  width: 42px;
+  height: 24px;
+  background-color: var(--tinta-200);
+  border-radius: var(--raio-pilula);
+  transition: background-color var(--transicao);
+}
+
+.interruptor__bola {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background-color: var(--branco);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(7, 43, 42, 0.25);
+  transition: transform var(--transicao);
+}
+
+.interruptor__entrada:checked + .interruptor__trilho {
+  background-color: var(--petroleo-600);
+}
+
+.interruptor__entrada:checked + .interruptor__trilho .interruptor__bola {
+  transform: translateX(18px);
+}
+
+.interruptor__entrada:focus-visible + .interruptor__trilho {
+  outline: 2px solid var(--petroleo-600);
+  outline-offset: 3px;
+}
+
+.interruptor__texto {
+  font-size: var(--passo--1);
+  font-weight: 500;
+  color: var(--tinta-700);
+}
+
+/* --- Lista de textos --- */
+
+.campo-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo-lista__linha {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.campo-lista__remover,
+.campo-lista__adicionar {
+  padding: 0.5rem 0.8rem;
+  min-height: 44px;
+  font-size: var(--passo--2);
+  font-weight: 600;
+  border-radius: var(--raio-sm);
+  border: 1px solid var(--cor-borda-forte);
+  background-color: var(--branco);
+  color: var(--tinta-600);
+  white-space: nowrap;
+  transition: border-color var(--transicao), color var(--transicao);
+}
+
+.campo-lista__remover:hover {
+  border-color: var(--cor-erro);
+  color: var(--cor-erro);
+}
+
+.campo-lista__adicionar {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  color: var(--petroleo-700);
+}
+
+.campo-lista__adicionar:hover {
+  border-color: var(--petroleo-500);
+}

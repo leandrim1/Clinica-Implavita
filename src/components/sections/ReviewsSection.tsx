@@ -1,7 +1,7 @@
 import { ArrowUpRight, Star } from 'lucide-react';
 
 import { Secao } from '@/components/ui/Secao';
-import { CONTATO, REPUTACAO } from '@/config/clinica';
+import { CONTATO, REPUTACAO, TEXTOS } from '@/config/clinica';
 
 import './ReviewsSection.css';
 
@@ -13,15 +13,10 @@ export function ReviewsSection() {
           <p className="sobretitulo">Avaliações</p>
 
           <h2 id="avaliacoes-titulo" className="avaliacoes__titulo">
-            O que dizem sobre a Implavita
+            {TEXTOS.avaliacoes.titulo}
           </h2>
 
-          <p className="avaliacoes__texto">
-            A clínica informa reputação de {REPUTACAO.nota} estrelas no Google, com{' '}
-            {REPUTACAO.totalAvaliacoes} avaliações recebidas. Em vez de reproduzir
-            depoimentos aqui, preferimos levar você direto à fonte: leia as avaliações
-            completas, com os nomes de quem escreveu, na própria página do Google.
-          </p>
+          <p className="avaliacoes__texto">{TEXTOS.avaliacoes.texto}</p>
 
           <a
             className="avaliacoes__link"

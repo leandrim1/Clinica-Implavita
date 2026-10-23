@@ -1,0 +1,74 @@
+.visao__alerta {
+  margin-bottom: var(--esp-md);
+}
+
+.visao__alerta a {
+  font-weight: 600;
+  color: var(--petroleo-800);
+  white-space: nowrap;
+}
+
+.visao__cartoes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--esp-sm);
+  margin-bottom: var(--esp-md);
+}
+
+.visao__cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: var(--esp-sm) var(--esp-md);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  text-decoration: none;
+  transition: border-color var(--transicao), transform var(--transicao-rapida);
+}
+
+.visao__cartao:hover {
+  border-color: var(--petroleo-400, var(--petroleo-500));
+  transform: translateY(-2px);
+}
+
+.visao__cartao--destaque {
+  border-left: 3px solid var(--ouro-500);
+}
+
+.visao__icone {
+  color: var(--ouro-600);
+  margin-bottom: 0.3rem;
+}
+
+.visao__valor {
+  font-family: var(--fonte-titulo);
+  font-size: var(--passo-3);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--petroleo-900);
+}
+
+.visao__rotulo {
+  font-size: var(--passo--2);
+  color: var(--tinta-500);
+}
+
+.visao__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: var(--passo--1);
+  color: var(--tinta-600);
+}
+
+.visao__lista a {
+  font-weight: 600;
+  color: var(--petroleo-800);
+}
+
+@media (min-width: 52rem) {
+  .visao__cartoes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

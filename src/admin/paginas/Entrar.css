@@ -1,0 +1,108 @@
+.entrar {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: var(--esp-md);
+  background-color: var(--petroleo-950);
+  background-image: radial-gradient(
+    circle at 50% 18%,
+    rgba(43, 135, 130, 0.22) 0%,
+    transparent 62%
+  );
+}
+
+.entrar__carregando {
+  color: rgba(214, 232, 230, 0.7);
+  font-size: var(--passo--1);
+}
+
+.entrar__cartao {
+  width: min(24rem, 100%);
+  padding: clamp(1.75rem, 5vw, 2.5rem);
+  background-color: var(--branco);
+  border-top: 3px solid var(--ouro-500);
+  border-radius: var(--raio-xs);
+  box-shadow: var(--sombra-alta);
+}
+
+.entrar__marca {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: var(--esp-lg);
+}
+
+.entrar__marca-nome {
+  font-family: var(--fonte-titulo);
+  font-size: var(--passo-2);
+  font-weight: 600;
+  color: var(--petroleo-900);
+}
+
+.entrar__marca-sub {
+  font-size: var(--passo--2);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ouro-700);
+}
+
+.entrar__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-sm);
+}
+
+.entrar__erro {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.75rem;
+  font-size: var(--passo--2);
+  font-weight: 500;
+  color: var(--cor-erro);
+  background-color: #fdf2f1;
+  border-left: 3px solid var(--cor-erro);
+  border-radius: var(--raio-xs);
+}
+
+.entrar__erro svg {
+  flex-shrink: 0;
+}
+
+.entrar__botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  margin-top: 0.3rem;
+  font-size: var(--passo--1);
+  font-weight: 600;
+  color: var(--branco);
+  background-color: var(--petroleo-800);
+  border-radius: var(--raio-sm);
+  transition: background-color var(--transicao);
+}
+
+.entrar__botao:hover:not(:disabled) {
+  background-color: var(--petroleo-700);
+}
+
+.entrar__botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.entrar__voltar {
+  display: inline-block;
+  margin-top: var(--esp-md);
+  font-size: var(--passo--2);
+  font-weight: 600;
+  color: var(--tinta-500);
+  text-decoration: none;
+}
+
+.entrar__voltar:hover {
+  color: var(--petroleo-700);
+}

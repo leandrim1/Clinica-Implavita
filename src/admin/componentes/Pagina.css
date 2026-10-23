@@ -1,0 +1,395 @@
+.pag__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--esp-sm);
+  margin-bottom: var(--esp-lg);
+}
+
+.pag__titulo {
+  font-size: var(--passo-3);
+}
+
+.pag__descricao {
+  margin-top: 0.3rem;
+  max-width: 46rem;
+  font-size: var(--passo--1);
+  line-height: 1.6;
+  color: var(--tinta-500);
+}
+
+.pag__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2xs);
+}
+
+/* --- Cartão --- */
+
+.cartao {
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  box-shadow: var(--sombra-sutil);
+}
+
+.cartao + .cartao {
+  margin-top: var(--esp-md);
+}
+
+.cartao__cabecalho {
+  padding: var(--esp-sm) var(--esp-md);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cartao__titulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--passo-0);
+  font-weight: 700;
+  color: var(--petroleo-900);
+}
+
+.cartao__descricao {
+  margin-top: 0.2rem;
+  font-size: var(--passo--2);
+  line-height: 1.55;
+  color: var(--tinta-500);
+}
+
+.cartao__corpo {
+  padding: var(--esp-md);
+}
+
+/* --- Grade de campos --- */
+
+.grade {
+  display: grid;
+  gap: var(--esp-sm);
+}
+
+@media (min-width: 46rem) {
+  .grade--2 { grid-template-columns: repeat(2, 1fr); }
+  .grade--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* --- Barra de salvar --- */
+
+/*
+ * A página de imagens tem um editor por bloco, cada um com sua barra. Elas
+ * só grudam no rodapé quando há o que salvar — do contrário se empilhariam
+ * uma sobre a outra por cima do conteúdo.
+ */
+.barra-salvar {
+  position: static;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--esp-sm);
+  margin-top: var(--esp-md);
+  padding: 0.85rem var(--esp-md);
+  background-color: rgba(251, 252, 252, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao);
+}
+
+.barra-salvar--ativa {
+  position: sticky;
+  bottom: 0;
+  border-color: var(--ouro-400);
+  box-shadow: 0 -4px 16px -8px rgba(7, 43, 42, 0.25);
+}
+
+.barra-salvar__estado {
+  flex: 1 1 14rem;
+  font-size: var(--passo--2);
+}
+
+.barra-salvar__ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: var(--cor-sucesso);
+}
+
+.barra-salvar__erro {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: var(--cor-erro);
+}
+
+.barra-salvar__erro svg {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.barra-salvar__pendente {
+  color: var(--tinta-500);
+}
+
+.barra-salvar__botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.15rem;
+  min-height: 44px;
+  font-size: var(--passo--1);
+  font-weight: 600;
+  color: var(--branco);
+  background-color: var(--petroleo-800);
+  border-radius: var(--raio-sm);
+  transition: background-color var(--transicao);
+}
+
+.barra-salvar__botao:hover:not(:disabled) {
+  background-color: var(--petroleo-700);
+}
+
+.barra-salvar__botao:disabled {
+  background-color: var(--tinta-200);
+  color: var(--tinta-400);
+  cursor: not-allowed;
+}
+
+/* --- Utilitários do painel --- */
+
+.carregando {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--esp-lg) 0;
+  font-size: var(--passo--1);
+  color: var(--tinta-500);
+}
+
+.girando {
+  animation: girar 900ms linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .girando { animation: none; }
+}
+
+.botao-adm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1rem;
+  min-height: 44px;
+  font-size: var(--passo--2);
+  font-weight: 600;
+  color: var(--petroleo-800);
+  background-color: var(--branco);
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-sm);
+  transition: border-color var(--transicao), background-color var(--transicao), color var(--transicao);
+}
+
+.botao-adm:hover:not(:disabled) {
+  border-color: var(--petroleo-500);
+  background-color: var(--petroleo-50);
+}
+
+.botao-adm:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.botao-adm--primario {
+  color: var(--branco);
+  background-color: var(--petroleo-800);
+  border-color: var(--petroleo-800);
+}
+
+.botao-adm--primario:hover:not(:disabled) {
+  background-color: var(--petroleo-700);
+  border-color: var(--petroleo-700);
+}
+
+.botao-adm--perigo {
+  color: var(--cor-erro);
+}
+
+.botao-adm--perigo:hover:not(:disabled) {
+  border-color: var(--cor-erro);
+  background-color: #fdf2f1;
+}
+
+.aviso-adm {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  font-size: var(--passo--2);
+  line-height: 1.55;
+  border-radius: var(--raio-xs);
+  border-left: 3px solid;
+}
+
+.aviso-adm svg { flex-shrink: 0; margin-top: 0.1em; }
+
+.aviso-adm--atencao {
+  color: var(--tinta-700);
+  background-color: var(--ouro-100);
+  border-color: var(--ouro-500);
+}
+
+.aviso-adm--info {
+  color: var(--tinta-600);
+  background-color: var(--petroleo-50);
+  border-color: var(--petroleo-500);
+}
+
+/* --- Horários --- */
+
+.horarios-adm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-sm);
+}
+
+.horarios-adm__linha {
+  display: grid;
+  gap: var(--esp-2xs);
+  padding-bottom: var(--esp-sm);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.horarios-adm__linha:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.horarios-adm__dia {
+  font-size: var(--passo--1);
+  font-weight: 700;
+  color: var(--petroleo-900);
+}
+
+@media (min-width: 46rem) {
+  .horarios-adm__linha {
+    grid-template-columns: 9rem repeat(2, 7rem) 1fr;
+    align-items: end;
+    gap: var(--esp-sm);
+  }
+
+  .horarios-adm__dia {
+    padding-bottom: 0.7rem;
+  }
+}
+
+/* --- Trava de consentimento --- */
+
+.trava {
+  padding: 0.75rem 0.9rem;
+  background-color: var(--tinta-50);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-xs);
+}
+
+.trava--ativa {
+  background-color: #fdf2f1;
+  border-color: #e9c9c6;
+}
+
+.trava__aviso {
+  margin-top: 0.4rem;
+  font-size: var(--passo--2);
+  font-weight: 600;
+  color: var(--cor-erro);
+}
+
+/* --- Tabela --- */
+
+.tabela-rolagem {
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--passo--1);
+}
+
+.tabela th {
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  font-size: var(--passo--2);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-400);
+  border-bottom: 1px solid var(--cor-borda);
+  white-space: nowrap;
+}
+
+.tabela td {
+  padding: 0.7rem;
+  color: var(--tinta-700);
+  border-bottom: 1px solid var(--cor-borda);
+  vertical-align: middle;
+}
+
+.tabela tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela__inativo td {
+  opacity: 0.55;
+}
+
+.tabela__voce {
+  font-size: var(--passo--2);
+  color: var(--tinta-400);
+}
+
+.tabela__acoes {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.tabela__acoes .botao-adm {
+  min-height: 36px;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.72rem;
+}
+
+/* --- Dados da conta --- */
+
+.dados-conta {
+  display: grid;
+  gap: var(--esp-sm);
+}
+
+.dados-conta dt {
+  font-size: var(--passo--2);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-400);
+}
+
+.dados-conta dd {
+  margin-top: 0.15rem;
+  font-size: var(--passo--1);
+  color: var(--tinta-800);
+}
+
+@media (min-width: 40rem) {
+  .dados-conta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

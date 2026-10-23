@@ -20,20 +20,25 @@ export function PrivacidadePage() {
       introducao={`Como a ${CLINICA.nome} trata as informações de quem utiliza este site.`}
     >
       <h2>Quais dados este site coleta</h2>
-      <p>
-        Nesta versão, o site é apenas institucional: não possui cadastro, área de
-        login, banco de dados nem envio de formulários para servidores da clínica.
-      </p>
       <ul>
         <li>
-          <strong>Formulário de contato:</strong> os dados que você digita (nome,
-          telefone, assunto e mensagem) permanecem somente no seu navegador. Eles são
-          usados para montar uma mensagem de WhatsApp que você decide enviar — ou não.
-          Nada é transmitido ou armazenado pelo site.
+          <strong>Formulário de contato:</strong> ao enviar o formulário, o nome, o
+          telefone, o assunto e a mensagem são registrados em um banco de dados da
+          clínica, junto do endereço IP de onde partiu o envio. Esses dados são usados
+          exclusivamente para a equipe retornar o contato. Em seguida, o site abre o
+          WhatsApp com a mensagem pronta — o envio por lá é decisão sua.
         </li>
         <li>
-          <strong>Nenhum cookie próprio:</strong> este site não grava cookies de
-          identificação nem utiliza ferramentas de rastreamento publicitário.
+          <strong>Base legal e prazo:</strong> o tratamento se apoia no legítimo
+          interesse de responder a quem procura a clínica (art. 7º, IX, da LGPD). As
+          mensagens ficam disponíveis à equipe até que sejam arquivadas ou excluídas.
+          Você pode pedir a exclusão a qualquer momento pelos canais abaixo.
+        </li>
+        <li>
+          <strong>Cookies:</strong> o site não usa cookies de rastreamento nem de
+          publicidade. Cookies são gravados apenas para quem acessa o painel
+          administrativo da clínica, e servem somente para manter a sessão de quem
+          fez login.
         </li>
       </ul>
 

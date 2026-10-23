@@ -93,3 +93,13 @@
 .sobre-escuro .sobretitulo::before {
   background-color: var(--ouro-400);
 }
+
+/* Espera do painel administrativo, enquanto o pacote dele é baixado. */
+.carregando-painel {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-size: var(--passo--1);
+  color: var(--tinta-400);
+  background-color: var(--tinta-50);
+}

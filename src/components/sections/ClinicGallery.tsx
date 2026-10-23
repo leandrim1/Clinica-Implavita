@@ -3,11 +3,10 @@ import { Clock, MapPin } from 'lucide-react';
 import { Secao, TituloSecao } from '@/components/ui/Secao';
 import {
   AMBIENTES,
-  AVISO_CASOS,
   CASOS_VISIVEIS,
-  CLINICA,
   ENDERECO,
   FOTOS_CLINICA,
+  TEXTOS,
 } from '@/config/clinica';
 import type { AmbienteClinica } from '@/types';
 
@@ -58,12 +57,8 @@ export function ClinicGallery() {
     <Secao id="clinica" fundo="papel" rotuladaPor="clinica-titulo">
       <TituloSecao
         sobretitulo="A Clínica"
-        titulo="Um espaço pensado para o seu atendimento"
-        descricao={
-          `A ${CLINICA.nome} atende em ${ENDERECO.bairro}, ${CLINICA.cidade}. ` +
-          'Da recepção ao consultório, o percurso é organizado para que cada ' +
-          'etapa do tratamento aconteça com calma e atenção.'
-        }
+        titulo={TEXTOS.clinica.titulo}
+        descricao={TEXTOS.clinica.descricao}
         id="clinica-titulo"
       />
 
@@ -98,7 +93,7 @@ export function ClinicGallery() {
         <div className="casos">
           <div className="casos__cabecalho">
             <h3 className="casos__titulo">Casos atendidos na Implavita</h3>
-            <p className="casos__aviso">{AVISO_CASOS}</p>
+            <p className="casos__aviso">{TEXTOS.avisoCasos}</p>
           </div>
 
           <ul className="casos__grade">

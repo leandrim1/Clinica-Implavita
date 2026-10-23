@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { Footer } from '@/components/layout/Footer';
@@ -8,6 +8,15 @@ import { HomePage } from '@/pages/HomePage';
 import { InformacoesLegaisPage } from '@/pages/InformacoesLegaisPage';
 import { NaoEncontradaPage } from '@/pages/NaoEncontradaPage';
 import { PrivacidadePage } from '@/pages/PrivacidadePage';
+
+/**
+ * O painel só é baixado por quem entra em /admin. Mantê-lo fora do pacote
+ * principal preserva o tempo de carregamento do site público, que é o que
+ * importa para quem chega procurando a clínica.
+ */
+const AdminApp = lazy(() =>
+  import('@/admin/AdminApp').then((m) => ({ default: m.AdminApp })),
+);
 
 /**
  * Ao trocar de rota, leva a página ao topo. Quando a URL traz uma âncora,
@@ -32,7 +41,8 @@ function GerenciadorDeRolagem() {
   return null;
 }
 
-export function App() {
+/** O site público: cabeçalho, conteúdo e rodapé. */
+function SitePublico() {
   return (
     <>
       <a className="pular-conteudo" href="#conteudo">
@@ -54,5 +64,22 @@ export function App() {
       <Footer />
       <WhatsAppButton />
     </>
+  );
+}
+
+export function App() {
+  return (
+    <Routes>
+      {/* O painel tem layout próprio: nada do site público entra aqui. */}
+      <Route
+        path="/admin/*"
+        element={
+          <Suspense fallback={<div className="carregando-painel">Carregando o painel…</div>}>
+            <AdminApp />
+          </Suspense>
+        }
+      />
+      <Route path="*" element={<SitePublico />} />
+    </Routes>
   );
 }

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Instagram, MapPin, Phone } from 'lucide-react';
 
 import { Marca } from '@/components/ui/Marca';
-import { CLINICA, CONTATO, ENDERECO, HORARIOS, NAVEGACAO } from '@/config/clinica';
+import { CLINICA, CONTATO, ENDERECO, HORARIOS, NAVEGACAO, TEXTOS } from '@/config/clinica';
 
 import './Footer.css';
 
@@ -96,11 +96,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <p className="rodape__disclaimer">
-          O conteúdo deste site tem caráter informativo e não substitui consulta,
-          diagnóstico ou tratamento odontológico. Resultados variam conforme as
-          condições clínicas de cada paciente.
-        </p>
+        <p className="rodape__disclaimer">{TEXTOS.avisoRodape}</p>
       </div>
     </footer>
   );

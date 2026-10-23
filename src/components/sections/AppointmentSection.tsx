@@ -2,7 +2,7 @@ import { CalendarCheck } from 'lucide-react';
 
 import { Botao } from '@/components/ui/Botao';
 import { Secao, TituloSecao } from '@/components/ui/Secao';
-import { ETAPAS_AGENDAMENTO } from '@/config/clinica';
+import { ETAPAS_AGENDAMENTO, TEXTOS } from '@/config/clinica';
 import { linkWhatsApp } from '@/lib/whatsapp';
 
 import './AppointmentSection.css';
@@ -13,8 +13,8 @@ export function AppointmentSection() {
       <div className="agendar">
         <TituloSecao
           sobretitulo="Como agendar"
-          titulo="Três passos até a sua avaliação"
-          descricao="O agendamento é feito diretamente com a equipe da clínica, pelo WhatsApp ou por telefone."
+          titulo={TEXTOS.agendamento.titulo}
+          descricao={TEXTOS.agendamento.descricao}
           id="agendar-titulo"
         />
 
@@ -42,10 +42,7 @@ export function AppointmentSection() {
             Agendar avaliação pelo WhatsApp
           </Botao>
 
-          <p className="agendar__observacao">
-            O site não confirma consultas automaticamente: a data é combinada com a
-            equipe durante a conversa.
-          </p>
+          <p className="agendar__observacao">{TEXTOS.agendamento.observacao}</p>
         </div>
       </div>
     </Secao>
