@@ -36,4 +36,15 @@ if (!resultado.success) {
 }
 
 export const ambiente = resultado.data;
-export const emProducao = ambiente.AMBIENTE === 'production';
+/**
+ * Hospedagens como a Vercel definem suas próprias variáveis. Detectá-las
+ * evita o pior dos esquecimentos: cookie de sessão sem `Secure` em produção
+ * porque alguém não lembrou de definir AMBIENTE.
+ */
+export const emProducao =
+  ambiente.AMBIENTE === 'production' ||
+  process.env['VERCEL_ENV'] === 'production' ||
+  process.env['VERCEL'] === '1';
+
+/** Em ambiente sem servidor cada instância abre o próprio pool. */
+export const semServidor = process.env['VERCEL'] === '1';

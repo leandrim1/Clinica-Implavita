@@ -42,7 +42,17 @@ export function criarApp() {
   app.use((req, res, next) => {
     const origem = req.get('origin');
 
-    if (origem && ambiente.ORIGENS_PERMITIDAS.includes(origem)) {
+    /**
+     * Quando front e API são servidos no mesmo domínio — o caso de um deploy
+     * na Vercel — a origem é a própria. Liberar isso automaticamente evita
+     * ter de repetir o domínio em ORIGENS_PERMITIDAS a cada ambiente de
+     * pré-visualização, que ganha um subdomínio novo a cada deploy.
+     */
+    const proprioHost = req.get('host');
+    const mesmaOrigem =
+      !!origem && !!proprioHost && origem.replace(/^https?:\/\//, '') === proprioHost;
+
+    if (origem && (mesmaOrigem || ambiente.ORIGENS_PERMITIDAS.includes(origem))) {
       res.set({
         'Access-Control-Allow-Origin': origem,
         'Access-Control-Allow-Credentials': 'true',
@@ -57,7 +67,9 @@ export function criarApp() {
     }
 
     if (req.method === 'OPTIONS') {
-      res.sendStatus(origem && ambiente.ORIGENS_PERMITIDAS.includes(origem) ? 204 : 403);
+      res.sendStatus(
+        origem && (mesmaOrigem || ambiente.ORIGENS_PERMITIDAS.includes(origem)) ? 204 : 403,
+      );
       return;
     }
 

@@ -1,18 +1,23 @@
 import { Pool } from 'pg';
 
-import { ambiente } from '../lib/ambiente.js';
+import { ambiente, semServidor } from '../lib/ambiente.js';
 
 /**
  * Pool único da aplicação.
  *
  * `DATABASE_SSL=true` cobre Postgres gerenciado (Neon, Supabase, RDS), que
  * exige TLS. Em desenvolvimento, contra um Postgres local, fica desligado.
+ *
+ * Sem servidor, cada instância tem o próprio pool e dezenas delas podem
+ * existir ao mesmo tempo — por isso o limite por instância cai para 1 e as
+ * conexões ociosas são liberadas rápido. Use a connection string *pooled*
+ * do provedor (no Neon, a que tem `-pooler` no host).
  */
 export const pool = new Pool({
   connectionString: ambiente.DATABASE_URL,
   ssl: ambiente.DATABASE_SSL ? { rejectUnauthorized: true } : false,
-  max: 10,
-  idleTimeoutMillis: 30_000,
+  max: semServidor ? 1 : 10,
+  idleTimeoutMillis: semServidor ? 10_000 : 30_000,
   connectionTimeoutMillis: 10_000,
 });
 
