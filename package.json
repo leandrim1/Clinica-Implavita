@@ -13,7 +13,8 @@
     "build:api": "tsc -p server/tsconfig.json",
     "start": "node server/dist/server/src/index.js",
     "db:migrar": "tsx server/src/db/migrar.ts",
-    "db:semear": "tsx server/src/db/semear.ts"
+    "db:semear": "tsx server/src/db/semear.ts",
+    "db:admin": "tsx server/src/db/admin.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

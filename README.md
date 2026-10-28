@@ -26,12 +26,17 @@ desenhada para a Implavita, sem aparência de template pronto.
 ```bash
 npm install
 cp .env.example .env   # ajuste DATABASE_URL e SEGREDO_SESSAO
-npm run db:semear      # cria as tabelas, carrega o conteúdo e o 1º admin
+npm run db:semear      # cria as tabelas e carrega o conteúdo
+npm run db:admin       # cria a conta de acesso ao painel
 npm run dev:api        # API   -> http://localhost:3333
 npm run dev            # site  -> http://localhost:5173
 ```
 
-O site abre em `/` e o painel em `/admin`.
+O site abre em `/` e o painel em `/admin`. Os **dois servidores precisam
+estar rodando**: só com `npm run dev` o site funciona, mas o painel não passa
+do login.
+
+Perdeu a senha? `npm run db:admin` redefine.
 
 | Comando | O que faz |
 | --- | --- |
@@ -41,7 +46,8 @@ O site abre em `/` e o painel em `/admin`.
 | `npm run build:api` | compila a API para `server/dist` |
 | `npm start` | sobe a API compilada |
 | `npm run db:migrar` | aplica migrações pendentes |
-| `npm run db:semear` | migra, carrega o conteúdo inicial e cria o 1º admin |
+| `npm run db:semear` | migra e carrega o conteúdo inicial |
+| `npm run db:admin` | cria a conta do painel ou redefine a senha |
 
 > O site funciona mesmo sem a API no ar: se ela não responder em 2,5 s, a
 > página renderiza com o conteúdo empacotado em `shared/conteudoPadrao.ts`.

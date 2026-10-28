@@ -6,18 +6,43 @@ o painel em `/admin`.
 ## Subir em desenvolvimento
 
 ```bash
-cp .env.example .env     # ajuste DATABASE_URL e SEGREDO_SESSAO
 npm install
-npm run db:semear        # cria as tabelas, carrega o conteúdo e o 1º admin
-npm run dev:api          # API em http://localhost:3333
-npm run dev              # site em http://localhost:5173 (já faz proxy de /api)
+cp .env.example .env     # ajuste DATABASE_URL e SEGREDO_SESSAO
+npm run db:semear        # cria as tabelas e carrega o conteúdo
+npm run db:admin         # cria a conta de acesso ao painel
+npm run dev:api          # API  -> http://localhost:3333
+npm run dev              # site -> http://localhost:5173 (faz proxy de /api)
 ```
+
+Os **dois servidores precisam estar no ar**. Só com `npm run dev`, o site
+abre normalmente (ele tem o conteúdo embutido como rede de segurança), mas o
+painel não passa do login — a tela avisa que a API não está respondendo.
 
 Gere o segredo de sessão com:
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
 ```
+
+### Conta de acesso
+
+O `.env` **não** guarda credenciais, de propósito: senha em texto puro num
+arquivo de configuração vaza fácil. A conta é criada por um comando próprio,
+que também serve para recuperar o acesso quando a senha se perde:
+
+```bash
+npm run db:admin
+```
+
+Ele pergunta e-mail, nome e senha. Se a conta já existir, redefine a senha e
+encerra as sessões abertas com a antiga. Para provisionamento automatizado,
+passe por variáveis:
+
+```bash
+ADMIN_EMAIL=voce@clinica.com.br ADMIN_SENHA='uma-senha-forte' npm run db:admin
+```
+
+A senha exige 12 caracteres, com maiúscula, minúscula e número.
 
 > **Nunca coloque `NODE_ENV` no `.env`.** O Vite lê esse arquivo durante o build
 > e passaria a empacotar a versão de desenvolvimento do React — o pacote dobra
@@ -111,5 +136,16 @@ do painel devem cair no `index.html` (veja `public/_redirects`).
 
 Com Neon ou outro Postgres gerenciado, use `DATABASE_SSL=true`.
 
-As migrações rodam sozinhas ao subir o servidor; `npm run db:semear` é só para
-o primeiro provisionamento.
+As migrações rodam sozinhas ao subir o servidor. `npm run db:semear` e
+`npm run db:admin` são para o primeiro provisionamento — e o segundo também
+recupera o acesso se a senha se perder.
+
+## Não consigo entrar no painel
+
+| Sintoma | Causa provável |
+| --- | --- |
+| `/admin` não abre (404) | servidor estático sem *fallback* de SPA: toda rota precisa cair no `index.html` |
+| Tela de login aparece, mas o acesso falha com "A API não está respondendo" | a API não está no ar — rode `npm run dev:api` |
+| "E-mail ou senha incorretos" | conta inexistente ou senha errada — rode `npm run db:admin` |
+| `Configuração inválida no .env` ao subir a API | falta o `.env` (ele não vai para o Git) — copie o `.env.example` |
+| "Muitas tentativas de login" | o limite travou; espere 15 minutos ou limpe `tentativas_login` |
